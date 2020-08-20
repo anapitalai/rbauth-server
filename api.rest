@@ -1,0 +1,16 @@
+GET https://localhost/users
+
+###
+GET https://localhost/status
+
+###
+
+POST https://localhost/login
+
+Content-Type: application/json
+
+{
+    "email":"anapitalai@gmail.com",
+    "password":"password"
+}
+

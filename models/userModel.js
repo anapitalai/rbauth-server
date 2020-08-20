@@ -1,32 +1,32 @@
 const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
 
-const UserSchema = new Schema({
-  email: {
-    type: String,
-    required: true,
-    trim: true
-  },
-  password: {
-    type: String,
-    required: true
-  },
-  role: {
-    type: String,
-    default: 'basic',
-    enum: ["basic", "supervisor", "admin"]
-  },
-  accessToken: {
-    type: String
-  },
-  
-  //added for email verify
-  active:{
-    type:Boolean,
-    default:0
-  }
-})
+const userSchema = mongoose.Schema({
+    _id: mongoose.Schema.Types.ObjectId,
+    email:{type: String,required:true,unique:true},
+    password: {type: String,required:true},
+    admin:{type:Boolean,default:false},
+    avatar:{type:String,required:false},
+    createdAt:Date,
+    updatedAt:Date
+});
 
-const User = mongoose.model('user', UserSchema)
+userSchema.pre('save', function(next) {
+    // get the current date
+    var currentDate = new Date();
+    // change the updated_at field to current date
+    this.createdAt = currentDate;
 
-module.exports = User;
+    // if created_at doesn't exist, add to that field
+    if (!this.updatedAt)
+    this.updatedAt = currentDate;
+    next();
+    });
+    
+
+    
+
+
+
+
+
+module.exports = mongoose.model('User',userSchema);
