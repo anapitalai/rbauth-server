@@ -4,6 +4,7 @@ const mongoose = require('mongoose');
 const uriUtil = require('mongodb-uri');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
+const checkMiddlewares = require('../middlewares/checkAuth')
 const usersController = require('../controllers/userController')
 
 const User = require('../models/userModel');
@@ -37,7 +38,7 @@ fileFilter:fileFilter
 
 
 //get all alumni routes
-router.get('/users',usersController.getAllUsers)
+router.get('/users',checkMiddlewares.auth,usersController.getAllUsers)
    
 
 //add a login user route
@@ -83,8 +84,6 @@ router.post('/signup',upload.single('avatar'),(req,res,next)=>{
 
 //login
 router.post('/login',usersController.auth)
-
-
 
 //get single alumni route
 router.get('/:memberId',(req,res,next)=>{
