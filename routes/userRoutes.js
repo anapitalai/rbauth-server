@@ -42,46 +42,7 @@ router.get('/users',checkMiddlewares.auth,usersController.getAllUsers)
    
 
 //add a login user route
-router.post('/signup',upload.single('avatar'),(req,res,next)=>{
-    User.find({email:req.body.email})
-    .exec()
-    .then(user=>{
-        if(user.length>=1){
-            return res.status(409).json({message:'Email exists.'});
-        }
-        else{
-           
-    bcrypt.hash(req.body.password,10,(err,hash)=>{
-        if(err){
-            return res.status(500).json({
-             error:err
-            });
-        }else{
-            const user = new User({
-                _id: new mongoose.Types.ObjectId(),
-                avatar:'http://202.1.39.189:3000/'+req.file.path,
-                email: req.body.email,
-                password:hash,
-                
-            }
-            );
-            //test
-
-                user.save()
-                .then(result=>{
-                    return res.status(201).json({message:'User created'});
-                })
-                .catch(error=>{
-                    console.log(err);
-                    res.status(500).json({error:err});
-                });
-        }//ifelse
-    });//bcrypt
-        }
-    })
-       
-})//router
-
+router.post('/signup',upload.single('avatar'),usersController.createUser)
 //login
 router.post('/login',usersController.auth)
 

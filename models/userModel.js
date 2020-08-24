@@ -6,6 +6,16 @@ const userSchema = mongoose.Schema({
   password: { type: String, required: true },
   admin: { type: Boolean, default: false },
   avatar: { type: String, required: false },
+  active: { type: Boolean, default: false },
+  avatar: { type: String, required: false },
+  role: {
+    type: String,
+    default: "basic",
+    enum: ["basic", "supervisor", "admin"],
+  },
+  accessToken: String,
+  activeToken: String,
+  activeExpires: Date,
   createdAt: Date,
   updatedAt: Date,
 });
