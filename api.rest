@@ -1,0 +1,14 @@
+GET https://localhost/users
+
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImFuYXBpdGFsYWlAZ21haWwuY29tIiwidXNlcklkIjoiNWYzZTZlNTQxOWI1YmMyYjFlNmY5NWYzIiwiaWF0IjoxNTk4MDE3NjYwLCJleHAiOjE1OTgwMTc3MjB9.PmAM_2ZsH2yoNZ83MQkE_D5hjKKMZ8RCyqZpdYMcSnY
+###
+
+POST https://localhost/login
+
+Content-Type: application/json
+
+{
+    "email":"anapitalai@gmail.com",
+    "password":"password"
+}
+
