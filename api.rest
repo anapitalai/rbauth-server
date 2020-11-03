@@ -9,6 +9,6 @@ Content-Type: application/json
 
 {
     "email":"anapitalai@gmail.com",
-    "password":"password"
+    "password":"noGoZone"
 }
 

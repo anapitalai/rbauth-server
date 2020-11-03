@@ -8,6 +8,7 @@ const cors = require("cors");
 const uuid = require("uuid");
 const fs = require("fs");
 const path = require("path");
+const AdminBro  = require("admin-bro");
 const bodyParser = require("body-parser");
 const rateLimit = require("express-rate-limit");
 
@@ -20,6 +21,8 @@ const rateLimiter = rateLimit({
 
 const User = require("./models/userModel");
 const userRoutes = require("./routes/userRoutes");
+
+
 
 app.use(express.json());
 
@@ -98,7 +101,10 @@ app.use(async (req, res, next) => {
   }
 });
 
+
+
 app.use("/", rateLimiter, userRoutes);
+
 
 //error handling
 app.use((req, res, next) => {

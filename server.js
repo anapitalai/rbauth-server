@@ -1,5 +1,6 @@
 const app = require('./app')
-const https = require('https')
+//const https = require('https')
+const https= require('http')
 const socketio = require('socket.io')
 require('dotenv').config()
 
@@ -22,6 +23,6 @@ io.on("connection", socket => {
 
 
 
-https.createServer(options,app).listen(process.env.HTTPS_PORT,()=>{
-  console.log("HTTPS is running on port 443!")
+https.createServer(options,app).listen(process.env.HTTP_PORT,()=>{
+  console.log("HTTP is running on port 3000!")
 })

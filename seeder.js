@@ -1,5 +1,5 @@
 const express = require('express');
-const User = require('./api/models/user.model');
+const User = require('./models/userModel');
 const router = express.Router();
 const mongoose = require('mongoose');
 const uriUtil = require('mongodb-uri');
@@ -31,7 +31,7 @@ const upload = multer({
 });
 
 
-mongodbUri = "mongodb://202.1.39.189:27017/eboard";
+mongodbUri = "mongodb://202.1.39.189/apec";
 
 const mongooseUri = uriUtil.formatMongoose(mongodbUri);
 const dbOptions = {};
